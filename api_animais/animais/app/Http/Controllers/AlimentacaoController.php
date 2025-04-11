@@ -63,86 +63,96 @@ class AlimentacaoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(alimentacao $alimentacao)
+    public function show($id)
     {
         $regBook = alimentacao::find($id);
-
-        if ($regBook) {
-            return 'alimentacao Localizados: '.$regBook.Response()->json([], Response::HTTP_NO_CONTENT);
-        }else{
-            return 'alimentacao não locaizados, '.Response()->json([],Response::HTTP_NO_CONTENT);
     
-        }     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, alimentacao $alimentacao)
-    {
-        $validator = Validator::make($request->all(), [
-            'quantiadade' => 'required',
-            'horario_alimentacao' => 'required',
-            'tipo_racao' => 'required'
-        ]);
-        if ($validator->fails()){
-            return response()->json([
-                'sucess' => false,
-                'message' => 'Registros Invalidos',
-                'errors' => $validator->erros()
-
-
-            ], 400);
-        }
-
-        $regBookBanco = alimentacao::find($id);
-
-        if (!$regBookBanco) {
-            return response()->json([
-                'success' => false,
-                'message' => 'alimentacão não encontrada'
-            ], 404);
-        }
-
-        $regBookBanco->nomeLivro = $request->nomeLivro;
-        $regBookBanco->generoLivro = $request->generoLivro;
-        $regBookBanco->anoLivro = $request->anoLivro;
-
-        if ($regBookBanco->save()) {
+        if ($regBook) {
             return response()->json([
                 'success' => true,
-                'message' => 'alimentação atualizado com sucesso!',
-                'data' => $regBookBanco
-            ], 200);
+                'message' => 'Alimentação localizada',
+                'data' => $regBook
+            ]);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Erro ao atualizar a alimentação'
-            ], 500);
+                'message' => 'Alimentação não localizada'
+            ], 404);
         }
     }
+    
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
+        'quantiadade' => 'required',
+        'horario_alimentacao' => 'required',
+        'tipo_racao' => 'required'
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Registros inválidos',
+            'errors' => $validator->errors()
+        ], 400);
+    }
+
+    $regBookBanco = alimentacao::find($id);
+
+    if (!$regBookBanco) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Alimentação não encontrada'
+        ], 404);
+    }
+
+    $regBookBanco->quantiadade = $request->quantiadade;
+    $regBookBanco->horario_alimentacao = $request->horario_alimentacao;
+    $regBookBanco->tipo_racao = $request->tipo_racao;
+
+    if ($regBookBanco->save()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Alimentação atualizada com sucesso!',
+            'data' => $regBookBanco
+        ], 200);
+    } else {
+        return response()->json([
+            'success' => false,
+            'message' => 'Erro ao atualizar a alimentação'
+        ], 500);
+    }
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(alimentacao $alimentacao)
+    public function destroy($id)
     {
         $regBook = alimentacao::find($id);
-
+    
         if (!$regBook) {
             return response()->json([
                 'success' => false,
-                'message' => 'alimentacao não encontrado'
+                'message' => 'Alimentação não encontrada'
             ], 404);
         }
+    
         if ($regBook->delete()) {
             return response()->json([
                 'success' => true,
-                'message' => 'alimentacao deletado com sucesso'
+                'message' => 'Alimentação deletada com sucesso'
             ], 200);
         }
+    
         return response()->json([
             'success' => false,
-            'message' => 'Erro ao deletar a alimentacao'
+            'message' => 'Erro ao deletar a alimentação'
         ], 500);
     }
+    
     }

@@ -22,19 +22,25 @@ Route::get('/raca/{id}', [RacaController::class, 'show']);
 // Rota para atualizar uma raça
 Route::put('/raca/{id}', [RacaController::class, 'update']);
 
+Route::patch('/raca/{id}', [RacaController::class, 'update']);
+
 // Rota para deletar uma raça
 Route::delete('/raca/{id}', [RacaController::class, 'destroy']);
 
 //ALIMENTAÇÃO
 
 // Rota para listar todas as alimentações
-Route::get('/alimentacoes', [AlimentacaoController::class, 'index']);
+Route::get('/alimentacao', [AlimentacaoController::class, 'index']);
 
 // Rota para criar uma nova alimentação
 Route::post('/alimentacao', [AlimentacaoController::class, 'store']);
 
+// Rota para visualizar uma alimentação específica
+Route::get('/alimentacao/{id}', [AlimentacaoController::class, 'show']);
+
 // Rota para atualizar uma alimentação
 Route::put('/alimentacao/{id}', [AlimentacaoController::class, 'update']);
+Route::patch('/alimentacao/{id}', [AlimentacaoController::class, 'update']);
 
 // Rota para deletar uma alimentação
 Route::delete('/alimentacao/{id}', [AlimentacaoController::class, 'destroy']);

@@ -60,18 +60,23 @@ class RacaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(raca $raca)
+    public function show($id)
     {
         $regBook = raca::find($id);
-
-        if ($regBook) {
-            return 'raça Localizada: '.$regBook.Response()->json([], Response::HTTP_NO_CONTENT);
-        }else{
-            return 'raça não locaizada, '.Response()->json([],Response::HTTP_NO_CONTENT);
     
-        } 
+        if ($regBook) {
+            return response()->json([
+                'success' => true,
+                'data' => $regBook
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Raça não localizada'
+            ], 404);
+        }
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
@@ -86,7 +91,8 @@ class RacaController extends Controller
             return response()->json([
                 'sucess' => false,
                 'message' => 'Registros Invalidos',
-                'errors' => $validator->erros()
+                'errors' => $validator->errors()
+
 
 
             ], 400);
@@ -94,16 +100,17 @@ class RacaController extends Controller
 
         $regBookBanco = raca::find($id);
 
-        if (!$regBookBanco) {
-            return response()->json([
-                'success' => false,
-                'message' => 'raça não encontrado'
-            ], 404);
-        }
+if (!$regBookBanco) {
+    return response()->json([
+        'success' => false,
+        'message' => 'Raça não encontrada'
+    ], 404);
+}
 
-        $regBookBanco->nomeLivro = $request->nomeLivro;
-        $regBookBanco->generoLivro = $request->generoLivro;
-        $regBookBanco->anoLivro = $request->anoLivro;
+$regBookBanco->Nome_da_raca = $request->Nome_da_raca;
+$regBookBanco->Tamanho = $request->Tamanho;
+$regBookBanco->idade = $request->idade;
+        
 
         if ($regBookBanco->save()) {
             return response()->json([
@@ -122,26 +129,29 @@ class RacaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(raca $raca)
+    public function destroy($id)
     {
         $regBook = raca::find($id);
-
+    
         if (!$regBook) {
             return response()->json([
                 'success' => false,
-                'message' => 'raca não encontrado'
+                'message' => 'Raça não encontrada'
             ], 404);
         }
+    
         if ($regBook->delete()) {
             return response()->json([
                 'success' => true,
-                'message' => 'raca deletado com sucesso'
+                'message' => 'Raça deletada com sucesso'
             ], 200);
         }
+    
         return response()->json([
             'success' => false,
-            'message' => 'Erro ao deletar a raca'
+            'message' => 'Erro ao deletar a raça'
         ], 500);
     }
+    
     }
 
