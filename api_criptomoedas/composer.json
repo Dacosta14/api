@@ -1,9 +1,0 @@
-{
-    "name": "alunos/api_criptomoedas",
-    "autoload": {
-        "psr-4": {
-            "Alunos\\ApiCriptomoedas\\": "src/"
-        }
-    },
-    "require": {}
-}
