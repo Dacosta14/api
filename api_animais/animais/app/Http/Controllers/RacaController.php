@@ -80,8 +80,10 @@ class RacaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, raca $raca)
+    public function update(Request $request, string $id)
     {
+        $regBookBanco = raca::find($id);
+
         $validator = Validator::make($request->all(), [
             'Nome_da_raca' => 'required',
             'Tamanho' => 'required',
@@ -98,7 +100,7 @@ class RacaController extends Controller
             ], 400);
         }
 
-        $regBookBanco = raca::find($id);
+        
 
 if (!$regBookBanco) {
     return response()->json([

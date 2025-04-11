@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
 
 // Rota para listar todas as raças
 Route::get('/raca', [RacaController::class, 'index']);
-
+Route::get('/raca/{id}', [RacaController::class, 'index']);
 // Rota para criar uma nova raça
 Route::post('/raca', [RacaController::class, 'store']);
 
