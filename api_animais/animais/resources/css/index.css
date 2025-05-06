@@ -1,0 +1,89 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+    color: #273F4F
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    height: 10vh;
+    background-color: #FE7743;
+    position: relative
+}
+header .btn-perfil {
+    background-color: #273F4F;
+    border: none;
+    padding: 8px;
+    border-radius: 4px; 
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%)
+}
+header .btn-perfil i {
+    color: #FFFFFF;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px 50px;
+    background-color: #EFEEEA;
+    gap: 16px;
+}
+main h1 {
+    color:#FE7743;
+    text-align: flex-start;
+}
+main .box-animais {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    grid-template-columns: repeat(4, 350px);
+    gap: 24px   
+}
+main .box-animais__item {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.25);
+    padding: 12px;
+    border-radius: 4px
+}
+main .box-animais__item p {
+    font-size: 16px;
+    font-weight: 500
+}
+@media (min-width: 1150px) and (max-width: 1500px) {
+    main .box-animais {
+        grid-template-columns: repeat(3, 350px);
+    }
+}
+@media (min-width: 750px) and (max-width: 1150px) {
+    main .box-animais {
+        grid-template-columns: repeat(2, 350px);
+    }
+}
+@media (min-width: 400px) and (max-width: 750px) {
+    main .box-animais {
+        grid-template-columns: repeat(1, 350px);
+    }
+}
+@media (max-width: 400px) {
+    main {
+        padding: 16px;
+    }
+    main .box-animais {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
