@@ -3,12 +3,11 @@
     margin: 0;
     box-sizing: border-box;
     font-family: monospace;
-    color: #273F4F
+    color: #000000
 }
 
 body {
     width: 100%;
-    height: 100%;
 }
 
 header {
@@ -35,7 +34,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    min-height: 100vh;
     width: 100%;
     height: 100%;
     padding: 16px 50px;
@@ -54,16 +53,73 @@ main .box-animais {
     gap: 24px   
 }
 main .box-animais__item {
+    position: relative;
     width: 100%;
     height: 100%;
     box-shadow: 0 4px 8px rgba(0,0,0, 0.25);
     padding: 12px;
-    border-radius: 4px
+    border-radius: 4px;
+    background-color: #FFFFFF
 }
-main .box-animais__item p {
+.box-animais__item p {
+    text-align: left;
+    line-break: auto;
     font-size: 16px;
     font-weight: 500
 }
+.box-animais__item .box-icon-edit {
+    border-radius: 5px;
+    padding: 4px;
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    cursor: pointer;
+    transition: all 100ms;
+}
+.box-animais__item .box-icon-edit:hover {
+    background-color: rgba(0,0,0, 0.15);
+}
+.box-animais__item .icon-edit {
+    color: #024CAA
+}
+
+.box-animais__item .box-icon-delete {
+    border-radius: 5px;
+    padding: 4px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: all 100ms;
+}
+.box-animais__item .box-icon-delete:hover {
+    background-color: rgba(0,0,0, 0.15);
+}
+.box-animais__item .icon-delete {
+    color: #FE7743
+}
+.box-animais__item.add {
+    transition: all 300ms;
+    cursor: pointer;
+    min-height: 259px;
+}
+.box-animais__item.add:hover {
+    scale:1.03;
+    background-color: rgba(0,0,0,0.10);
+}
+.box-animais__item .box-icon-add {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
+}
+.box-animais__item .icon-add {
+    font-size: 20px;
+    color: #FE7743
+}
+
+
 @media (min-width: 1150px) and (max-width: 1500px) {
     main .box-animais {
         grid-template-columns: repeat(3, 350px);

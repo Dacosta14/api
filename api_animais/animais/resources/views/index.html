@@ -5,41 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <body>
     <main>
         <h1>Animais:</h1>
         <section class="box-animais">
+            <!-- Faz uma função para criar um item deste para cada animal dentro do json -->
             <div class="box-animais__item">
+                <!-- Faz uma função para pegar o id do item e deletar ele -->
+                <div class="box-icon-edit">
+                    <i class="icon-edit fa-solid fa-pen-to-square"></i>
+                </div>
+
+                <!-- Faz uma função para pegar os dados do item e ir para pagina de edição -->
+                <div class="box-icon-delete">
+                    <i class="icon-delete fa-solid fa-trash"></i>
+                </div>
+
                 <p>Nome da Raça:</p>
+                <p>{$nome}</p>
                 <p>Tamanho:</p>
+                <p>{$tamanho}</p>
                 <p>Idade:</p>
+                <p>{$idade}</p>
+                <p>Horario de Alimentação:</p>
+                <p>{$horario}</p>
+                <p>Tipo de Ração</p>
+                <p>{$tipo}</p>
+                <p>Quantidade de ração:</p>
+                <p>{$quantidade}</p>
             </div>
-            <div class="box-animais__item">
-                <p>Nome da Raça:</p>
-                <p>Tamanho:</p>
-                <p>Idade:</p>
-            </div>
-            <div class="box-animais__item">
-                <p>Nome da Raça:</p>
-                <p>Tamanho:</p>
-                <p>Idade:</p>
-            </div>
-            <div class="box-animais__item">
-                <p>Nome da Raça:</p>
-                <p>Tamanho:</p>
-                <p>Idade:</p>
-            </div>
-            <div class="box-animais__item">
-                <p>Nome da Raça:</p>
-                <p>Tamanho:</p>
-                <p>Idade:</p>
-            </div>
-            <div class="box-animais__item">
-                <p>Nome da Raça:</p>
-                <p>Tamanho:</p>
-                <p>Idade:</p>
+
+            <!-- Faz uma função para quando clicar neste item ele ir para pagina de cadastro -->
+            <div class="box-animais__item add">
+                <div class="box-icon-add">
+                    <i class="icon-add fa-solid fa-plus"></i>
+                </div>
             </div>
         </section>
     </main>
